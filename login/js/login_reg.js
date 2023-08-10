@@ -40,7 +40,7 @@ function oFocus_p() {
 //若输入框为空，阻止表单的提交
 function submitTest(username, pwd) {
 	var form1=document.getElementsByTagName("form")[0];
-	form1.action="welcome.html?"+username;
+	form1.action="http://htmlpreview.github.io/?https://github.com/yangdan1992/project/blob/main/login/welcome.html?"+username;
     if (username=="" && pwd=="") { //用户框value值为空
         document.getElementById("remind_u").innerHTML = "请输入用户名！";
         document.getElementById("change_margin_u").style.marginBottom = 1 + "px";
