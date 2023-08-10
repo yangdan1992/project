@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sign-up</title>
+    <link href="css/login_reg.css" rel="stylesheet" type="text/css">
+	<script src="js/login_reg1.js" type="text/javascript"></script>
+</head>
+<body>
+    <header>
+        <div class="header-line"></div>
+    </header>
+    <div class="content-reg">
+        <img class="content-logo" src="images/form_logo.png" alt="logo">
+        <h1 class="content-title">创建账户</h1>
+        <div class="content-form-reg">
+            <form method="post" action="" onsubmit="return submitTest()">
+                <div id="change_margin_1">
+				  <span class="title">用户名：</span>
+                  <input id="username" class="user" type="text" name="user" placeholder="请输入用户名" onblur="oBlur_1(username.value)" onfocus="oFocus_1()">
+				  <span class="info">6~10个字符，可使用字母、数字、下划线</span>
+                </div>
+                <div id="change_margin_2">
+					<span class="title">密码：</span>
+                    <input id="pwd" class="password" type="password" name="password" placeholder="请输入密码" onblur="oBlur_2(pwd.value)" onfocus="oFocus_2()">
+					<span class="info">6~16个字符，区分大小写</span>
+                </div>
+				<div id="change_margin_3">
+					<span class="title">确认密码：</span>
+                    <input id="pwd1" class="password" type="password" name="password" placeholder="请输入密码" onblur="oBlur_3(pwd.value,pwd1.value)" onfocus="oFocus_3()">
+					<span class="info">请再次输入密码</span>
+                </div>
+				<div id="change_margin_4">
+					<span class="title">电子邮箱：</span>
+                    <input id="email" class="email" type="text" name="email" placeholder="请输入邮箱地址" onblur="oBlur_4(email.value)" onfocus="oFocus_4()">
+					<span class="info">请输入正确的邮箱地址</span>
+                </div>
+                <div id="change_margin_5" class="submit">
+                    <input class="content-form-signup" type="submit" value="创建账户">
+                </div>
+            </form>
+        </div>
+        <div class="content-login-description">已经拥有账户？</div>
+        <div><a class="content-login-link" href="login.html">登录</a></div>
+</div>
+</body>
+</html>
