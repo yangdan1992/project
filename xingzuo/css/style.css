@@ -1,0 +1,258 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+.container{
+	width: 80%;
+	height: 80vh;
+	margin: 100px auto;
+}
+.left{
+	position: relative;
+	width: 300px;
+	height: 300px;
+	border: solid 2px #fff;
+	border-radius: 50%;
+	top: 50px;
+	left: 30px;
+	float: left;
+	text-align: center;
+}
+ul{
+	list-style: none;
+	position: relative;
+	z-index: 1;
+}
+li{
+	width: 40px;
+	height: 40px;
+	background: #fff;
+	color:#363636;
+	border: solid 2px #707070;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 40px;
+	position: absolute;/*绝对定位*/
+	cursor: pointer;
+	transition: width .5s, height .5s, line-height .5s, background .5s;/*过渡效果*/
+}
+/*鼠标移入效果*/
+li:hover{
+	background: #373737;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	color: #fff;
+	border-color: #fff;
+}
+/*6个li标记位置*/
+#step1{
+	top: -40px;
+	left: 125px;
+}
+#step2{
+	top: 60px;
+	left: 265px;
+}
+#step3{
+	top: 190px;
+	left: 253px;
+}
+#step4{
+	top: 260px;
+	left: 125px;
+}
+#step5{
+	top: 190px;
+	left: -5px;
+}
+#step6{
+	top: 60px;
+	left: -15px;
+}
+/*被选中li标记样式*/
+.active{
+	background: #373737;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	color: #fff;
+	border-color: #fff;
+}
+/*左侧圆圈中间图片*/
+.img{
+	position: relative;
+	margin-top: 50px;
+	animation: image 2s;
+}
+@keyframes image{
+	0%{
+		transform: translate(20px,0);
+		opacity: 0;
+	}
+	100%{
+		transform: translate(0,0);
+		opacity: 1;
+	}
+}
+/*右侧内容部分*/
+.right{
+	float: left;
+	width: 60%;
+	margin-left: 130px;
+	margin-top: 50px;
+	color: #fff;
+}
+/*右侧内容部分动画设置*/
+.content{
+	animation: content 1s;
+}
+@keyframes content{
+	0%{
+		opacity: 0;
+	}
+	100%{
+		opacity: 1;
+	}
+}
+/*性格部分小标签*/
+.tag{
+	width: 100px;
+	background: #fff;
+	line-height: 40px;
+	border-radius: 10px;
+	color: #E78878;
+}
+/*星座配对进度条*/
+.bar{
+	width: 300px;
+	height: 15px;
+	border-radius: 10px;
+	background: #fff;
+}
+.percent{
+	height: 15px;
+	border-radius: 10px;
+	background:#28586F;
+	animation: loading 2s;
+}
+/*进度条加载动画*/
+@keyframes loading{
+	0%{
+		width: 0%;
+	}
+	100%{
+		width: 100%;
+	}
+}
+.type2{
+	animation: loading2 2s;
+	width: 90%;
+}
+@keyframes loading2{
+	0%{
+		width: 0%;
+	}
+	100%{
+		width: 90%;
+	}
+}
+.type3{
+	animation: loading3 2s;
+	width: 80%;
+}
+@keyframes loading3{
+	0%{
+		width: 0%;
+	}
+	100%{
+		width: 80%;
+	}
+}
+#today img{
+	vertical-align: middle;
+}
+/*我眼中的金牛座关键词*/
+.card{
+	width: 100px;
+	height: 50px;
+	background: #fff;
+	color: #B7951E;
+	border-radius: 10px;
+	text-align: center;
+	line-height: 50px;
+	font-size: 18px;
+	font-weight: bold;
+	position: absolute;
+}
+/*关键词位置*/
+.position1{
+	top: 75px;
+	left: 5px;
+	animation: show 1s;
+}
+.position2{
+	top: 150px;
+	left: 55px;
+	animation: show 1s;
+	animation-delay: .2s;
+}
+.position3{
+	top: 65px;
+	left: 180px;
+	animation: show 1s;
+	animation-delay: .5s;
+}
+.position4{
+	top: 150px;
+	left: 245px;
+	animation: show 1s;
+}
+.position5{
+	top: 260px;
+	left: -5px;
+	animation: show 1s;
+	animation-delay: .3s;
+}
+.position6{
+	top: 40px;
+	left: 385px;
+	animation: show 1s;
+}
+.position7{
+	top: 140px;
+	left: 420px;
+	animation: show 1s;
+	animation-delay: .5s;
+}
+.position8{
+	top: 240px;
+	left: 155px;
+	animation: show 1s;
+	animation-delay: .2s;
+}
+.position9{
+	top: 260px;
+	left: 300px;
+	animation: show 1s;
+	animation-delay: .5s;
+}
+.position10{
+	top: 240px;
+	left: 450px;
+	animation: show 1s;
+}
+@keyframes show{
+	0%{
+		transform: scale(0);
+	}
+	50%{
+		transform: scale(1.2);
+	}
+	100%{
+		transform: scale(1);
+	}
+}
