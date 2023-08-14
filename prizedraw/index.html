@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>在线抽奖</title>
+<style>
+	*{
+		margin:0;
+		padding:0;
+	}
+	body{
+		background: url(images/bg.png);
+		background-repeat: repeat-x;
+		background: cover;
+		text-align: center;
+	}
+	.content{
+		width: 400px;
+		margin: 50px auto;
+	}
+	.text{
+		position: absolute;
+		color: #fff;
+		font-size: 32px;
+		font-weight: bold;
+		width: 100%;
+		bottom: 10px;
+	}
+	#container{
+		width:306px;
+		height:306px;
+		margin:20px auto;
+		background: #fff;
+		border-radius: 30px;
+		border: solid 3px #930002;
+		opacity: 0.9;
+	}
+	ul{
+		width:306px;
+		height:306px;
+		list-style:none;
+	}
+	ul li,ul a{
+		width:100px;
+		height:100px;
+		border:solid 1px #930002;
+		float:left;
+		text-align:center;
+		line-height:100px;
+	}
+	ul a:hover{
+		cursor:pointer;
+		color:orange;
+		font-size:18px;
+	}
+	ul .active{
+		background:#930002;
+		color:#fff;
+	}
+	#info{
+		line-height:32px;
+		color:#fff;
+		text-align:center;
+	}
+</style>
+</head>
+
+<body>
+	<div class="content">
+		<div style="position: relative">
+			<img src="images/卡通人物.png" width="60%">
+			<div class="text">开奖啦</div>
+		</div>
+		
+		<div id="container">
+			<ul>
+				<li id="li-0" style="border-top-left-radius: 20px;">一等奖</li>
+				<li id="li-1">二等奖</li>
+				<li id="li-2" style="border-top-right-radius: 20px;">三等奖</li>
+				<li id="li-7">八等奖</li>
+				<a onClick="start()">开始</a>
+				<li id="li-3">四等奖</li>
+				<li id="li-6" style="border-bottom-left-radius: 20px;">七等奖</li>
+				<li id="li-5">六等奖</li>
+				<li id="li-4" style="border-bottom-right-radius: 20px;">五等奖</li>
+			</ul>
+			<p id="info"></p>
+		</div>
+	</div>
+</body>
+<script>
+function start(){
+	var li = document.getElementsByTagName("li"),
+		info = document.getElementById("info"),
+		i = 0,
+		level = 0;
+	
+	//Math.floor()返回小于参数x的最大整数，即对浮点数向下取整
+	//Math.random() 方法可返回介于 0 ~ 1 之间的一个随机数
+	var num = Math.floor(Math.random() * li.length) + 20;
+	
+	//setInterval() 方法可按照指定的周期（以毫秒计）来调用函数或计算表达式。
+	var timer = setInterval(function(){
+		//初始化界面，将网页中所有li标签的样式清空
+		for(var j=0;j<li.length;j++){
+			li[j].className = "";
+		}
+		//将当前转到的li标签的样式设置为active
+		document.getElementById("li-"+i%li.length).className = "active";
+		//计数器
+		i++;
+		//判断是否结束
+		if(i == num){
+			//setInterval() 方法会不停地调用函数，直到 clearInterval() 被调用或窗口被关闭。由 setInterval() 返回的 ID 值可用作 clearInterval() 方法的参数
+			clearInterval(timer);
+			//寻找结束时选中的li标签
+			for(var j=0;j<li.length;j++){
+				if(document.getElementById("li-"+j).className == "active"){
+					level = j + 1;
+					info.innerHTML += "恭喜您中了：" + level + " 等奖" + '<br/>';
+				}
+			}
+		}
+	},100);
+}
+</script>
+</html>
