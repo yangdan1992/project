@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>pixel board</title>
+<style>
+	body{
+		text-align:center;
+		background-color:white;
+	}
+	.my{
+		border-style:solid;
+		border-width:thin;
+		background-color:white;
+		width: 10px;
+		height: 10px;
+		float:left;
+		border-color:lightgray;
+	}
+	.button{
+		height:30px;
+		width:200px;
+		background-color:red;
+		font-size:20px;
+	
+	}
+	.button2{
+		height:30px;
+		width:200px;
+		background-color:red;
+		font-size:20px;
+		margin:20px;
+	}
+	.div{
+		float:left;
+		text-align:center;
+	}
+	.color{
+		border-radius:50%;
+		height:30px;
+		width:30px;
+		margin:19px;
+	}
+	.inputred{
+		width:100px;
+		background-color:rgba(255,50,100,1.00);
+	}
+</style>
+</head>
+
+<body>
+<script>
+	var red=0,yellow=0,blue=0,light=0.00;
+	var n=new Array(6995);
+	//动态创建并添加div
+	for(var i=0;i<=6995;i++){
+		n[i]=0;
+		var div=document.createElement("div");
+		div.className="my";
+		document.body.appendChild(div);
+	}
+	//设置div点击事件
+	var div=document.getElementsByTagName('div');//获取页面中的div元素
+	for(var j=0; j<div.length; j++){
+		div[j].index = j;//存储当前div的序号
+		div[j].onclick = function(){
+			var a = this.index;
+			switch(n[a]){
+				case 1: this.style.backgroundColor="#88001b"; this.style.borderColor="#88001b"; break;
+				case 2: this.style.backgroundColor="red"; this.style.borderColor="red"; break;
+				case 3: this.style.backgroundColor="#ffca18"; this.style.borderColor="#ffca18"; break;
+				case 4: this.style.backgroundColor="yellow"; this.style.borderColor="yellow"; break;
+				case 5: this.style.backgroundColor="#fdeca6"; this.style.borderColor="#fdeca6"; break;
+				case 6: this.style.backgroundColor="#c4ff0e"; this.style.borderColor="#c4ff0e"; break;
+				case 7: this.style.backgroundColor="#0faa25"; this.style.borderColor="#0faa25"; break;
+				case 8: this.style.backgroundColor="#8cfffb"; this.style.borderColor="#8cfffb"; break;
+				case 9: this.style.backgroundColor="#00a8f3"; this.style.borderColor="#00a8f3"; break;
+				case 10: this.style.backgroundColor="blue"; this.style.borderColor="blue"; break;
+				case 11: this.style.backgroundColor="purple"; this.style.borderColor="purple"; break;
+				case 12: this.style.backgroundColor="pink"; this.style.borderColor="pink"; break;
+				case 13: this.style.backgroundColor="saddlebrown"; this.style.borderColor="saddlebrown"; break;
+				case 14: this.style.backgroundColor="wheat"; this.style.borderColor="wheat"; break;
+				case 15: this.style.backgroundColor="black"; this.style.borderColor="black"; break;
+				case 16: this.style.backgroundColor="dimgray"; this.style.borderColor="dimgray"; break;
+				case 17: this.style.backgroundColor="darkgray"; this.style.borderColor="darkgray"; break;
+				case 18: this.style.backgroundColor="white"; this.style.borderColor="lightgray"; break;
+				default: 
+					this.style.backgroundColor="rgba("+red+","+green+","+blue+","+light+")";
+					this.style.borderColor="rgba("+red+","+green+","+blue+","+light+")";
+		}
+	}
+	}
+function hhh()
+{
+	alert('This is a game. When you click on a square, it will change color. If you are a disabled hand, please be careful and do not click wrong. There are 18 colors in total. Every click will change color.You can draw many paintings with this. Come on, good luck.    Produced by: Cccrazy Studio: Nen    Cccrazy Studio: TTj')
+}
+function ooo(t){
+	for(var h=0;h<6995;h++)n[h] = t;
+}
+function get(){
+	for(var h=0;h<6995;h++) n[h] = 0;
+	red=document.getElementById("red").value;
+	green=document.getElementById("green").value;
+	blue=document.getElementById("blue").value;
+	light=document.getElementById("light").value;
+}
+</script>
+<br>
+<button type="button" onClick="hhh()" class="button">Help?</button>
+<br>
+<div class="div">
+<button type="button" onClick="ooo(1)" class="color" style="background-color:#88001b"></button>
+<button type="button" onClick="ooo(2)" class="color" style="background-color:red"></button>
+<button type="button" onClick="ooo(3)" class="color" style="background-color:#ffca18"></button>
+<button type="button" onClick="ooo(4)" class="color" style="background-color:yellow"></button>
+<button type="button" onClick="ooo(5)" class="color" style="background-color:#fdeca6"></button>
+<button type="button" onClick="ooo(6)" class="color" style="background-color:#c4ff0e"></button>
+<button type="button" onClick="ooo(7)" class="color" style="background-color:#0FAA25"></button>
+<button type="button" onClick="ooo(8)" class="color" style="background-color:#8cfffb"></button>
+<button type="button" onClick="ooo(9)" class="color" style="background-color:#00a8f3"></button>
+<button type="button" onClick="ooo(10)" class="color" style="background-color:blue"></button>
+<button type="button" onClick="ooo(11)" class="color" style="background-color:purple"></button>
+<button type="button" onClick="ooo(12)" class="color" style="background-color:pink"></button>
+<button type="button" onClick="ooo(13)" class="color" style="background-color:saddlebrown"></button>
+<button type="button" onClick="ooo(14)" class="color" style="background-color:wheat"></button>
+<button type="button" onClick="ooo(15)" class="color" style="background-color:black"></button>
+<button type="button" onClick="ooo(16)" class="color" style="background-color:dimgray"></button>
+<button type="button" onClick="ooo(17)" class="color" style="background-color:lightgray"></button>
+<button type="button" onClick="ooo(18)" class="color" style="background-color:white"></button>
+</div>
+<button type="button" onClick="get()" class="color">+</button>
+<form>
+<input type="text" class="input" placeholder="RED RGB:0~255" id="red">
+<input type="text" class="input" placeholder="GREEN RGB:0~255" id="green">
+<input type="text" class="input" placeholder="BLUE RGB:0~255" id="blue">
+<input type="text" class="input" placeholder="LIGHT RGB:0~1" id="light">
+</form>
+</body>
+</html>
