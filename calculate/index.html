@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>计算小能手</title>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		background: #0E707C;
+		color: #fff;
+		display: flex;
+		font-size: 64px;
+		font-weight: bold;
+		position: relative;
+	}
+	.left{
+		display: flex;
+		width: 50%;
+		height: 100vh;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		border-right: 2px dashed #FFFFFF;
+		background:#E08789;
+	}
+	input{
+		height: 50px;
+		width: 200px;
+		padding: 20px;
+		font-size: 32px;
+		font-weight: bold;
+		border: none;
+		outline: none;
+		border-radius: 20px;
+		margin-right: 20px;
+		vertical-align: top;
+	}
+	button{
+		height: 50px;
+		width: 150px;
+		font-size: 32px;
+		font-weight: bold;
+		padding: 0 5px;
+		line-height: 50px;
+		background: #EFE995;
+		color:#292929;
+		cursor: pointer;
+		vertical-align: middle;
+	}
+	.tips{
+		font-size: 16px;
+		margin-top: 10px;
+	}
+	.countdown, .result{
+		position: absolute;
+		top: 10px;
+		left: 10px;
+		font-size: 16px;
+	}
+	.result{
+		top: 50px;
+	}
+	#right{
+		padding: 20px;
+	}
+	#right div{
+		font-size: 32px;
+		padding-left: 30px;
+	}
+</style>
+</head>
+
+<body>
+	<div class="left">
+		<div>
+			<span id="num1">1</span><span id="op">+</span><span id="num2">1</span>=
+			<input id="ans" type="text" placeholder="请输入答案...">
+			<img id="icon" src="" width="50px">
+		</div>
+
+		<div class="tips">tips：点击“开始”按钮开始游戏，除法结果中小数位数多于2位的四舍五入保留2位小数</div>
+
+		<div>
+			<button onClick="start()">开始</button>
+			<button id="next" onClick="submit()" disabled>下一题</button>
+		</div>
+	</div>
+	
+	<div id="right">
+		<h6>错题记录</h6>
+	</div>
+	
+	
+	<div class="countdown">倒计时：<span id="time">60</span></div>
+	<div class="result">得分：<span id="score">0</span></div>
+</body>
+<script>
+	var op = document.getElementById("op");
+	var num1 = document.getElementById("num1");
+	var num2 = document.getElementById("num2");
+	var sj1,sj2,sj3;
+	var score = document.getElementById("score");
+	score.innerHTML = 0;
+	
+	var t;
+	function start(){
+		clearInterval(t);
+		
+		var next = document.getElementById('next');
+		next.removeAttribute('disabled');
+		generate();
+		var time = document.getElementById('time');
+		time.innerHTML = 60;
+		t = setInterval(function(){
+			time.innerHTML = time.innerHTML - 1;
+			if(time.innerHTML == 0){
+				alert("时间到，你的得分为" + score.innerHTML);
+				clearInterval(t);
+				next.disabled = true;
+			}
+		},1000);
+	}
+	
+	
+	function generate(){
+		//生成运算符
+		sj3 = Math.floor(Math.random()*4);
+		switch(sj3){
+			case 0: op.innerHTML = '+';break;
+			case 1: op.innerHTML = '-';break;
+			case 2: op.innerHTML = '×';break;
+			case 3: op.innerHTML = '÷';break;
+		}
+		//生成运算数
+		sj1 = Math.floor(Math.random()*10);
+		sj2 = Math.floor(Math.random()*10);
+		if(sj3==3){//避免除数为0
+			while(sj2==0){
+				sj2 = Math.floor(Math.random()*10);
+			}
+		}
+		num1.innerHTML = sj1;
+		num2.innerHTML = sj2;
+	}
+	
+	function submit(){
+		var ans = document.getElementById("ans");
+		var number1 = Number(num1.innerHTML);
+		var number2 = Number(num2.innerHTML);
+		var icon = document.getElementById('icon');
+		var correct;
+		var right = document.getElementById('right');
+		switch(sj3){
+			case 0: correct = number1 + number2;break;
+			case 1: correct = number1 - number2;break;
+			case 2: correct = number1 * number2;break;
+			case 3: correct = number1 / number2;
+					correct = correct.toString();
+					console.log(correct);
+					if(number1 % number2 !=0 && correct.split('.')[1].length>2) correct = Number(correct).toFixed(2);
+					break;
+		}
+		console.log(correct);
+		if(ans.value ==''){
+			alert("请输入答案");
+		}else{
+			if(ans.value == correct){
+				//alert("恭喜你，回答正确");
+				icon.src = 'image/对号.png';
+				score.innerHTML = Number(score.innerHTML) + 1;
+			}else{
+				//alert("很遗憾，回答错误")
+				icon.src = 'image/错号.png';
+				var div = document.createElement('div');
+				
+				div.innerHTML = number1 + op.innerHTML + number2 + '=' + ans.value;
+				right.appendChild(div);
+			}
+
+			generate();
+
+			ans.value = "";
+		}
+	}
+</script>
+</html>
