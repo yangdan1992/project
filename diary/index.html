@@ -1,0 +1,221 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>选项卡</title>
+<style>
+	body{
+		margin: 0;
+		padding: 0;
+		background: #454545;
+		font-family: "微软雅黑";
+	}
+	.container{
+		width: 60%;
+		margin: 100px auto;
+	}
+
+	.tablink {
+		background-color: #555;
+		color: white;
+		border: none;
+		outline: none;
+		cursor: pointer;
+		padding: 14px 0;
+		font-size: 17px;
+		width: 10%;
+		border-radius: 5px 5px 0 0;
+	}
+
+	.tablink:hover {
+		background-color: #777;
+	}
+	/* Style the tab content */
+	.tabcontent {
+		/*display: none;*/
+		color: white;
+		padding: 30px 50px;
+		border-radius: 0 10px 10px 10px;
+	}
+	.tabcontent img{
+		display: inline-block;
+		margin: 0 15px;
+		cursor: pointer;
+	}
+	textarea{
+		width: 100%;
+		height: 100px;
+		font-size: 14px;
+		font-family: "微软雅黑";
+		border: none;
+		outline: none;
+		border-radius: 5px;
+	}
+	.tabcontent button{
+		width: 80px;
+		height: 30px;
+		border-radius: 5px;
+		border: none;
+		outline: none;
+		cursor: pointer;
+		background: #fff;
+		margin: 10px 0;
+	}
+	#Mon {background-color:#EB9A5C;}
+	#Tue {background-color:#EAC760;}
+	#Wed {background-color:#89D96D;}
+	#Thu {background-color:#52AC53;}
+	#Fri {background-color:#7FBFE3;}
+	#Sat {background-color:#C49DEB;}
+	#Sun {background-color:#D062AD;}
+</style>
+</head>
+
+<body>
+	<div class="container">
+		<!--选项卡标签-->
+		<button class="tablink" onclick="openTab('Mon', this, '#EB9A5C')" id="defaultOpen">周一</button>
+		<button class="tablink" onclick="openTab('Tue', this, '#EAC760')">周二</button>
+		<button class="tablink" onclick="openTab('Wed', this, '#89D96D')">周三</button>
+		<button class="tablink" onclick="openTab('Thu', this, '#52AC53')">周四</button>
+		<button class="tablink" onclick="openTab('Fri', this, '#7FBFE3')">周五</button>
+		<button class="tablink" onclick="openTab('Sat', this, '#C49DEB')">周六</button>
+		<button class="tablink" onclick="openTab('Sun', this, '#D062AD')">周日</button>
+		<!--周一选项卡内容-->
+		<div id="Mon" class="tabcontent">
+		  	<h3>今天心情如何？</h3>
+		  	<img src="images/upset1.png" width="50px" onClick="changeImg(this,'upset')">
+			<img src="images/soso1.png" width="50px" onClick="changeImg(this,'soso')">
+			<img src="images/happy1.png" width="50px" onClick="changeImg(this,'happy')">
+			<h3>今天有发生值得记录的事情吗？</h3>
+			<textarea autofocus id="Mon_textarea" placeholder="写下你认为值得记录的事情吧"></textarea>
+			<button onClick="save(this, 'Mon_textarea', 'Mon_text')">保存</button>
+			<div id="Mon_text"></div>
+		</div>
+		<!--周二选项卡内容-->
+		<div id="Tue" class="tabcontent">
+		  	<h3>今天心情如何？</h3>
+		  	<img src="images/upset1.png" width="50px" onClick="changeImg(this,'upset')">
+			<img src="images/soso1.png" width="50px" onClick="changeImg(this,'soso')">
+			<img src="images/happy1.png" width="50px" onClick="changeImg(this,'happy')">
+			<h3>今天有发生值得记录的事情吗？</h3>
+			<textarea autofocus id="Tue_textarea" placeholder="写下你认为值得记录的事情吧"></textarea>
+			<button onClick="save(this, 'Tue_textarea', 'Tue_text')">保存</button>
+			<div id="Tue_text"></div>
+		</div>
+		<!--周三选项卡内容-->
+		<div id="Wed" class="tabcontent">
+		  	<h3>今天心情如何？</h3>
+		  	<img src="images/upset1.png" width="50px" onClick="changeImg(this,'upset')">
+			<img src="images/soso1.png" width="50px" onClick="changeImg(this,'soso')">
+			<img src="images/happy1.png" width="50px" onClick="changeImg(this,'happy')">
+			<h3>今天有发生值得记录的事情吗？</h3>
+			<textarea autofocus id="Wed_textarea" placeholder="写下你认为值得记录的事情吧"></textarea>
+			<button onClick="save(this, 'Wed_textarea', 'Wed_text')">保存</button>
+			<div id="Wed_text"></div>
+		</div>
+		<!--周四选项卡内容-->
+		<div id="Thu" class="tabcontent">
+		  	<h3>今天心情如何？</h3>
+		  	<img src="images/upset1.png" width="50px" onClick="changeImg(this,'upset')">
+			<img src="images/soso1.png" width="50px" onClick="changeImg(this,'soso')">
+			<img src="images/happy1.png" width="50px" onClick="changeImg(this,'happy')">
+			<h3>今天有发生值得记录的事情吗？</h3>
+			<textarea autofocus id="Thu_textarea" placeholder="写下你认为值得记录的事情吧"></textarea>
+			<button onClick="save(this, 'Thu_textarea', 'Thu_text')">保存</button>
+			<div id="Thu_text"></div>
+		</div>
+		<!--周五选项卡内容-->
+		<div id="Fri" class="tabcontent">
+		  	<h3>今天心情如何？</h3>
+		  	<img src="images/upset1.png" width="50px" onClick="changeImg(this,'upset')">
+			<img src="images/soso1.png" width="50px" onClick="changeImg(this,'soso')">
+			<img src="images/happy1.png" width="50px" onClick="changeImg(this,'happy')">
+			<h3>今天有发生值得记录的事情吗？</h3>
+			<textarea autofocus id="Fri_textarea" placeholder="写下你认为值得记录的事情吧"></textarea>
+			<button onClick="save(this, 'Fri_textarea', 'Fri_text')">保存</button>
+			<div id="Fri_text"></div>
+		</div>
+		<!--周六选项卡内容-->
+		<div id="Sat" class="tabcontent">
+		  	<h3>今天心情如何？</h3>
+		  	<img src="images/upset1.png" width="50px" onClick="changeImg(this,'upset')">
+			<img src="images/soso1.png" width="50px" onClick="changeImg(this,'soso')">
+			<img src="images/happy1.png" width="50px" onClick="changeImg(this,'happy')">
+			<h3>今天有发生值得记录的事情吗？</h3>
+			<textarea autofocus id="Sat_textarea" placeholder="写下你认为值得记录的事情吧"></textarea>
+			<button onClick="save(this, 'Sat_textarea', 'Sat_text')">保存</button>
+			<div id="Sat_text"></div>
+		</div>
+		<!--周日选项卡内容-->
+		<div id="Sun" class="tabcontent">
+		  	<h3>今天心情如何？</h3>
+		  	<img src="images/upset1.png" width="50px" onClick="changeImg(this,'upset')">
+			<img src="images/soso1.png" width="50px" onClick="changeImg(this,'soso')">
+			<img src="images/happy1.png" width="50px" onClick="changeImg(this,'happy')">
+			<h3>今天有发生值得记录的事情吗？</h3>
+			<textarea autofocus id="Sun_textarea" placeholder="写下你认为值得记录的事情吧"></textarea>
+			<button onClick="save(this, 'Sun_textarea', 'Sun_text')">保存</button>
+			<div id="Sun_text"></div>
+		</div>
+	</div>
+</body>
+<script>
+	//选项卡切换效果
+	function openTab(day,elmnt,color) {
+		var i, tabcontent, tablinks;
+		tabcontent = document.getElementsByClassName("tabcontent");
+		for (i = 0; i < tabcontent.length; i++) {
+			tabcontent[i].style.display = "none";
+		}
+		tablinks = document.getElementsByClassName("tablink");
+		for (i = 0; i < tablinks.length; i++) {
+			tablinks[i].style.backgroundColor = "";
+		}
+		document.getElementById(day).style.display = "block";
+		elmnt.style.backgroundColor = color;
+
+	}
+	//打开页面默认显示周一选项卡
+	//document.getElementById("defaultOpen").click();
+	//打开页面默认显示当日选项卡
+	var date = new Date();
+	var day = date.getDay();//0-6
+	if(day==0) document.getElementsByClassName("tablink")[day+6].click();
+	else document.getElementsByClassName("tablink")[day-1].click();
+	
+	//选择心情
+	var upset = 1, soso = 1, happy = 1;
+	function changeImg(e,mood){
+		if(mood == "upset"){
+			if(upset == 1) upset = 2;
+			else upset = 1;
+			e.src = "images/" + mood + upset + ".png";
+		}
+		if(mood == "soso"){
+			if(soso == 1) soso = 2;
+			else soso = 1;
+			e.src = "images/" + mood + soso + ".png";
+		}
+		if(mood == "happy"){
+			if(happy == 1) happy = 2;
+			else happy = 1;
+			e.src = "images/" + mood + happy + ".png";
+		}
+	}
+	//提交保存日记
+	function save(e,textareaid,textid){
+		var textarea = document.getElementById(textareaid);
+		if(e.innerHTML == "保存"){
+			var text = textarea.value;
+			textarea.style.display = "none";
+			e.innerHTML = "修改";
+			document.getElementById(textid).innerHTML = text;
+		}else{
+			textarea.style.display = "block";
+			textarea.value = "";
+			e.innerHTML = "保存";
+		}
+	}
+</script>
+</html>
