@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<script src="js/game.js" type="text/javascript"></script>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+		text-align: center;
+		line-height: 25px;
+	}
+	h1{
+		margin: 30px auto;
+	}
+	#djs, #defen{
+		color: red;
+		font-weight: bold;
+	}
+	button{
+		margin: 0 30px 30px 30px;
+		width: 100px;
+		border-radius: 10px;
+		cursor: pointer;
+		background-color:#C5DD4B;
+		color: white;
+	}
+	table{
+		margin: auto;
+	}
+</style>
+</head>
+<body>
+	<h1>打地鼠</h1>
+	<div class="setting">
+		地鼠停留时间：<input id="tl" type="text" size="5" value="1" />秒，
+		地鼠出现间隔：<input id="jg" type="text" size="5" value="1" />秒，
+		游戏时长：<input id="sc" type="text" size="5px" value="1" />分钟<br />
+		游戏倒计时：<span id="djs"></span>秒<br />
+		游戏得分：<span id="defen"></span><br /><br />
+
+		<button id="ksBtn" onClick="start()">开始游戏</button>
+		<button id="ztBtn" onClick="pause()">暂停游戏</button>
+		<button id="tzBtn" onClick="end()">停止游戏</button>
+	</div>
+
+	<!--游戏区域-->
+	<table border="0" cellspacing="5" align="center">
+		<tr>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+		</tr>
+		<tr>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+		</tr>
+		<tr>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+		</tr>
+		<tr>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+		</tr>
+		<tr>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+			<td><img src="img/00.jpg" onclick="play(this)" /></td>
+		</tr>
+	</table>
+</body>
+</html>
