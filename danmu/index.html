@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>弹幕</title>
+<style>
+	body{
+		margin: 0;
+		padding: 0;
+		background:#292929;
+	}
+	.container{
+		width: 60%;
+		margin: 50px auto;
+		position: relative;
+	}
+	.content{
+		width: 80%;
+		margin: 5px auto;
+	}
+	input{
+		width: 50%;
+		line-height: 200%;
+		outline: none;
+	}
+	select{
+		width: 25%;
+		outline: none;
+		height: 30px;
+	}
+	option{
+		outline: none;
+	}
+	button{
+		width: 10%;
+		line-height: 200%;
+	}
+	#danmu{
+		position: absolute;
+		width: 820px;
+		height: 330px;
+		top: 50px;
+		left: 0;
+		color: #fff;
+		z-index: 1;
+	}
+	#color, #size, #times{
+		display: none;
+	}
+	marquee{
+		cursor: pointer;
+	}
+</style>
+</head>
+
+<body>
+	<div class="container">
+		<!--视频-->
+		<embed src="video/video.mp4" width="820" height="460">
+		<!--弹幕设置发送区-->
+		<div class="content">
+			<input id="text" type="text" placeholder="请输入弹幕内容">
+			<select id="direction">
+				<option value="left">请选择弹幕方向</option>
+				<option value="left">向左</option>
+				<option value="right">向右</option>
+				<option value="up">向上</option>
+				<option value="down">向下</option>
+			</select>
+			<img src="images/set.png" width="30px" style="vertical-align: middle;cursor: pointer" onClick="set()">
+			<button onClick="send()">发送</button>
+			<br><br>
+			<select id="color">
+				<option value="#fff">请选择弹幕颜色</option>
+				<option value="#DB6466" style="color: #DB6466">红色</option>
+				<option value="#E8E750" style="color:#E8E750">黄色</option>
+				<option value="#6BD762" style="color:#6BD762">绿色</option>
+				<option value="#649ADB" style="color: #649ADB">蓝色</option>
+			</select>
+			<select id="size">
+				<option value="14px">请选择弹幕字号</option>
+				<option value="14px" style="font-size: 14px">小号</option>
+				<option value="16px" style="font-size: 16px">中号</option>
+				<option value="18px" style="font-size: 18px">大号</option>
+				<option value="20px" style="font-size: 20px">超大号</option>
+			</select>
+			<input id="times" type="text" placeholder="请输入弹幕循环次数（1-5）" style="width: 40%">
+		</div>
+		<!--弹幕显示容器-->
+		<div id="danmu"></div>
+	</div>
+</body>
+<script>
+	//弹幕发送
+	function send(){
+		var text = document.getElementById("text").value;//获取弹幕内容
+		var direction = document.getElementById("direction");//获取弹幕方向
+		var color = document.getElementById("color");//获取弹幕颜色
+		var size = document.getElementById("size");//获取弹幕大小
+		var times = document.getElementById("times").value;//获取循环次数
+		if(times == "") times = 1;//默认循环一次
+		
+		var danmu = document.createElement("marquee");//创建弹幕标签
+		danmu.direction = direction.options[direction.selectedIndex].value;//设置弹幕方向
+		danmu.innerHTML = text;//设置弹幕内容
+		danmu.style.color = color.options[color.selectedIndex].value;//设置弹幕颜色
+		danmu.style.fontSize = size.options[size.selectedIndex].value;//设置弹幕颜色
+		danmu.loop = times;//设置弹幕循环次数
+		
+		//将弹幕添加到网页中
+		var container = document.getElementById("danmu");
+		container.appendChild(danmu);
+		
+		//重置弹幕填写内容
+		document.getElementById("text").value = "";
+		direction.selectedIndex = 0;
+		color.selectedIndex = 0;
+		size.selectedIndex = 0;
+		document.getElementById("times").value = "";
+		color.style.display = "none";
+		size.style.display = "none";
+		document.getElementById("times").style.display = "none";
+	}
+	//更多设置
+	function set(){
+		var color = document.getElementById("color");
+		var size = document.getElementById("size");
+		var times = document.getElementById("times");
+		color.style.display = "inline-block";
+		size.style.display = "inline-block";
+		times.style.display = "inline-block";
+	}
+	//捕捉鼠标点击事件
+	document.onclick = function(){
+		var marquee = document.getElementsByTagName("marquee");
+		for(var i=0;i<marquee.length;i++){
+			marquee[i].onclick = function(){
+				var text = this.innerHTML;
+				
+				var danmu = document.createElement("marquee");//创建弹幕标签
+				danmu.direction = "left";//设置弹幕方向
+				danmu.innerHTML = text;//设置弹幕内容
+				danmu.loop = 1;//设置弹幕循环次数
+				danmu.style.fontStyle = "italic";//斜体标识复制的弹幕
+
+				//将弹幕添加到网页中
+				var container = document.getElementById("danmu");
+				container.appendChild(danmu);
+			}
+		}
+	}
+	
+</script>
+</html>
