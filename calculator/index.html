@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>计算器</title>
+<style>
+*{
+	border: none;
+	font-family: 'Open Sans', sans-serif;
+	margin: 0;
+	padding: 0;	
+}
+h1{
+	color: #495678;
+	font-size: 30px;	
+	margin-top: 70px;
+	text-align: center;
+}
+.box{
+	background-color: #495678;
+	box-shadow: 4px 4px #3d4a65;  /*水平阴影位置，垂直阴影位置，颜色*/
+	margin: 40px auto;
+	padding: 40px 0 30px 40px;	
+	width: 280px;
+	border-radius: 25px;  /*添加圆角边框*/
+}
+.btn{
+	outline: none;  /*轮廓样式*/
+	cursor: pointer;  /*鼠标指针样式*/
+	font-size: 20px;
+	height: 45px;
+	margin: 5px 0 5px 10px;
+	width: 45px;
+	border-radius: 50%;
+}
+.number {
+	background-color: #72778b;
+	box-shadow: 0 5px #5f6680;
+	color: #dededc;
+}
+.number:active {
+	box-shadow: 0 2px #5f6680;
+  	transform: translateY(2px);  /*定义Y轴方向上的转换*/
+	-webkit-transform: translateY(2px);
+  	-ms-transform: translateY(2px);
+  	-moz-tranform: translateY(2px);
+}
+.operator {
+	background-color: #dededc;
+	box-shadow: 0 5px #bebebe;
+	color: #72778b;
+}
+.operator:active {
+	box-shadow: 0 2px #bebebe;
+  	-webkit-transform: translateY(2px);
+  	-ms-transform: translateY(2px);
+  	-moz-tranform: translateY(2px);
+  	transform: translateY(2px);
+}
+.other {
+	background-color: #e3844c;
+	box-shadow: 0 5px #e76a3d;
+	color: #dededc;
+}
+.other:active {
+	box-shadow: 0 2px #e76a3d;
+  	-webkit-transform: translateY(2px);
+  	-ms-transform: translateY(2px);
+  	-moz-tranform: translateY(2px);
+  	transform: translateY(2px);
+}
+#display {
+	outline: none;
+	background-color: #98d1dc;
+	box-shadow: inset 6px 6px #3facc0;  /*inset	，将外部阴影 (outset) 改为内部阴影。*/
+	border-radius: 25px;
+	color: #dededc;
+	font-size: 20px;
+	height: 47px;
+	text-align: right;
+	width: 165px;
+	padding-right: 10px;
+	margin-left: 10px;
+}
+</style>
+</head>
+
+<body>
+	<h1>计算器</h1>
+	<div class="box">
+		<input type="button" class="btn other" value="C" onClick="clearValue()">
+		<input type="text" id="display" readonly>
+		<input type="button" class="btn number" value="7" onClick="getValue(this.value)">
+		<input type="button" class="btn number" value="8" onClick="getValue(this.value)">
+		<input type="button" class="btn number" value="9" onClick="getValue(this.value)">
+		<input type="button" class="btn operator" value="+" onClick="getValue(this.value)">
+		<input type="button" class="btn number" value="4" onClick="getValue(this.value)">
+		<input type="button" class="btn number" value="5" onClick="getValue(this.value)">
+		<input type="button" class="btn number" value="6" onClick="getValue(this.value)">
+		<input type="button" class="btn operator" value="*" onClick="getValue(this.value)">
+		<input type="button" class="btn number" value="1" onClick="getValue(this.value)">
+		<input type="button" class="btn number" value="2" onClick="getValue(this.value)">
+		<input type="button" class="btn number" value="3" onClick="getValue(this.value)">
+		<input type="button" class="btn operator" value="-" onClick="getValue(this.value)">
+		<input type="button" class="btn number" value="0" onClick="getValue(this.value)">
+		<input type="button" class="btn operator" value="." onClick="getValue(this.value)">
+		<input type="button" class="btn operator" value="/" onClick="getValue(this.value)">	
+		<input type="button" class="btn other" value="=" onClick="calculate()">
+	</div>
+</body>
+<script>
+	//获取点击按钮的值
+	function getValue(value){
+		document.getElementById("display").value += value;
+		//document.getElementById("display").value = document.getElementById("display").value + value
+	}
+	//计算
+	function calculate(){
+		var result = document.getElementById("display").value;
+		//eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码
+		document.getElementById("display").value = eval(result);
+	}
+	//清空
+	function clearValue(){
+		document.getElementById("display").value = "";
+	}
+</script>
+</html>
