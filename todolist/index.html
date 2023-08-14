@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	*{
+		padding: 0;
+		margin: 0;
+	}
+	.top{
+		background: #9ABCE9;
+		text-align: center;
+		padding: 50px 0;
+	}
+	h1{
+		color: #fff;
+		margin-bottom: 20px;
+	}
+	input, button{
+		width: 75%;
+		height: 30px;
+		font-size: 16px;
+		border: none;
+		outline: none;
+		padding: 5px;
+		vertical-align: top;
+	}
+	button{
+		width: 7%;
+		background:#F4F9A4;
+		height: 40px;
+		cursor: pointer;
+	}
+	button:hover{
+		background:#EDF47D;
+	}
+	ul{
+		list-style-type: none;
+	}
+	ul li{
+		background: #FFFEB6;
+		padding: 15px 120px;
+		position: relative;
+	}
+	ul li:nth-child(odd){
+		background:#FFFD99;
+	}
+	ul li:hover{
+		background: #E4E38A;
+	}
+	span{
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		cursor: pointer;
+		padding: 15px;
+	}
+	span:hover{
+		background: #A34748;
+		color: #fff;
+	}
+	ul li.checked{
+		background: #6A6A6A;
+		text-decoration: line-through;
+		color: #fff;
+	}
+	ul li.checked::before{
+		content: '';
+		width: 7px;
+		height: 15px;
+		border-bottom: solid 2px #fff;
+		border-right: solid 2px #fff;
+		position: absolute;
+		left: 80px;
+		transform: rotate(45deg);
+	}
+</style>
+</head>
+
+<body>
+	<div class="top">
+		<h1>我的待办事项</h1>
+		<input placeholder="请输入内容" id="text"><button onClick="add()">添加</button>
+	</div>
+	<div>
+		<ul id="list">
+			<li class="checked">9:00-10:00开会<span>&times;</span></li>
+			<li>12:40-14:15上课<span>&times;</span></li>
+			<li>4:30-5:30国际部答疑<span>&times;</span></li>
+			<li>6:30-8:30竞赛训练<span>&times;</span></li>
+			<li>加油<span>&times;</span></li>
+		</ul>
+	</div>
+</body>
+<script>
+	var li = document.getElementsByTagName('li');
+	for(var i = 0; i < li.length; i++){
+		li[i].onclick = function(){
+			this.className = "checked";
+		}
+	}
+	
+	var deletes = document.getElementsByTagName('span');
+	for(var i = 0; i < deletes.length; i++){
+		deletes[i].onclick = function(){
+			var parent = this.parentNode;
+			parent.style.display = 'none';
+		}
+	}
+	
+	function add(){
+		var text = document.getElementById('text');
+		if(text.value == ''){
+			alert("请输入待办事项内容");
+		}else{
+			var tag = document.createElement('li');
+			tag.innerHTML = text.value;
+			
+			var span = document.createElement('span');
+			span.innerHTML = '&times;';
+			
+			tag.appendChild(span);	
+			
+			var list = document.getElementById('list');
+			list.appendChild(tag);
+		}
+		
+		text.value = '';
+		
+		var li = document.getElementsByTagName('li');
+		for(var i = 0; i < li.length; i++){
+			li[i].onclick = function(){
+				this.className = "checked";
+			}
+		}
+
+		var deletes = document.getElementsByTagName('span');
+		for(var i = 0; i < deletes.length; i++){
+			deletes[i].onclick = function(){
+				var parent = this.parentNode;
+				parent.style.display = 'none';
+			}
+		}
+	}
+</script>
+</html>
