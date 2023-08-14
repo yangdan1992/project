@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>电子相册</title>
+<style>
+	body{
+		margin: 0;
+		padding: 0;
+		background: #454545;
+	}
+	.container{
+		width: 70%;
+		margin: 50px auto;
+		border: solid 1px #979797;
+		border-radius: 10px;
+		padding: 30px;
+	}
+	.left{
+		width: 50%;
+		float: left;
+	}
+	.left img{
+		margin: 5px;
+		cursor: pointer;
+		border: solid 1px #454545;
+	}
+	.left img:hover{
+		border: solid 1px #fff;
+	}
+	.right{
+		width: 47.5%;
+		float: left;
+		margin-top: 6px;
+		margin-left: 10px;
+	}
+	.right img{
+		width: 100%;
+		animation-name: fade;
+		animation-duration: 1.5s;
+		cursor: pointer;
+	}
+	@keyframes fade{
+		from {opacity: .4} 
+  		to {opacity: 1}
+	}
+	/* 弹窗背景 */
+	.modal {
+		display: none;  /*默认不显示 */
+		position: fixed; /* Stay in place */
+		z-index: 1; /* Sit on top */
+		padding-top: 50px; /* Location of the box */
+		left: 0;
+		top: 0;
+		width: 100%; /* Full width */
+		height: 100%; /* Full height */
+		overflow: auto; /* Enable scroll if needed */
+		background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+	}
+
+	/* 图片 */
+	.modal-content {
+		margin: auto;
+		display: block;
+		width: 60%;
+		max-width: 700px;
+	}
+
+	/* 文本内容 */
+	#caption {
+		margin: auto;
+		display: block;
+		width: 80%;
+		max-width: 700px;
+		text-align: center;
+		color: #ccc;
+		padding: 10px 0;
+		height: 150px;
+	}
+
+	/* 关闭按钮 */
+	.close {
+		position: absolute;
+		top: 15px;
+		right: 35px;
+		color: #f1f1f1;
+		font-size: 40px;
+		font-weight: bold;
+		transition: 0.3s;
+	}
+
+	.close:hover,.close:focus {
+		color: #bbb;
+		text-decoration: none;
+		cursor: pointer;
+	}
+</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="left">
+			<img src="images/Img1.JPG" alt="北京铁道博物馆" title="点击查看大图" width="100px">
+			<img src="images/Img2.JPG" alt="首尔弘大" width="100px">
+			<img src="images/Img3.JPG" alt="北京屁桃展" width="100px">
+			<img src="images/Img4.JPG" alt="北京爱丽丝梦游奇境展" width="100px">
+			<img src="images/Img5.JPG" alt="昆明" width="100px">
+			<img src="images/Img6.JPG" alt="首尔小法兰西村" width="100px">
+			<img src="images/Img7.JPG" alt="青岛燕儿岛公园" width="100px">
+			<img src="images/Img8.JPG" alt="丽江玉龙雪山" width="100px">
+			<img src="images/Img9.JPG" alt="北京line friends展" width="100px">
+			<img src="images/Img10.JPG" alt="吉隆坡" width="100px">
+			<img src="images/Img11.JPG" alt="槟城" width="100px">
+			<img src="images/Img12.JPG" alt="兰卡威" width="100px">
+			<img src="images/Img13.JPG" alt="大理洱海" width="100px">
+			<img src="images/Img14.JPG" alt="首尔景福宫" width="100px">
+			<img src="images/Img15.JPG" alt="首尔弘大" width="100px">
+			<img src="images/Img16.JPG" alt="青岛大学路" width="100px">
+		</div>
+		<div class="right">
+			<img id="big" src="images/Img1.jpg" alt="">
+			
+		</div>
+		<div style="float: right; margin-right: 15px;">
+			<img src="images/放大镜.png" width="20px" style="vertical-align: middle">
+			<span style="color: #fff; font-size: 12px">点击查看大图</span>
+		</div>
+		<div style="clear: both"></div>
+	</div>
+	<!-- 弹窗 -->
+	<div id="myModal" class="modal">
+		<!-- 关闭按钮 -->
+		<span class="close">&times;</span>
+		<!-- 弹窗内容 -->
+		<img class="modal-content" id="img01">
+		<!-- 文本描述 -->
+		<div id="caption"></div>
+	</div>
+</body>
+<script>
+	var arr = ["北京铁道博物馆","首尔弘大","北京屁桃展","北京爱丽丝梦游奇境展","昆明","首尔小法兰西村","青岛燕儿岛公园","丽江玉龙雪山","北京line friends展","吉隆坡","槟城","兰卡威","大理洱海","首尔景福宫","首尔弘大","青岛大学路"];
+	var img = document.getElementsByTagName("img");
+	var big = document.getElementById("big");
+	for(var i=0;i<16;i++){
+		//将被点击小图的路径赋值给大图
+		img[i].onclick = function(){
+			big.src = this.src;
+			big.alt = this.alt;
+		}
+	}
+	
+	var imgIndex;//大图显示图片编号
+	var t = setInterval(function(){
+		//判断图片编号是否是两位数
+		if(big.src.slice(-6,-5)!='g') imgIndex = big.src.slice(-6,-4);
+		else imgIndex = big.src.slice(-5,-4);//-1 指最后一个字符，-2 指倒数第二个字符
+		imgIndex++;//准备显示当前图片的下一张
+		if(imgIndex>16) imgIndex = 1;//播放到最后一张图片后切换回第一张
+		big.src = "images/Img" + imgIndex + ".jpg";
+		big.alt = arr[imgIndex-1];
+		//将所有小图边框初始化
+		for(var i=0;i<16;i++) img[i].style.borderColor = "#454545";
+		img[imgIndex-1].style.borderColor = "#fff";//设置当前播放图片的边框为白色
+	},2000);
+	
+	//图片预览
+	// 获取弹窗
+	var modal = document.getElementById('myModal');
+	// 获取图片插入到弹窗 - 使用 "alt" 属性作为文本部分的内容
+	var myimg = document.getElementById('myImg');
+	var modalImg = document.getElementById("img01");
+	var captionText = document.getElementById("caption");
+	//大图点击事件
+	big.onclick = function(){
+		modal.style.display = "block";
+		//判断图片编号是否是两位数
+		var num;
+		if(this.src.slice(-6,-5)!='g') num = this.src.slice(-6,-4);
+		else num = big.src.slice(-5,-4);//-1 指最后一个字符，-2 指倒数第二个字符
+		modalImg.src = "images/Img" + num + "-1.jpg";;
+		captionText.innerHTML = this.alt;
+	}
+
+	var closebtn = document.getElementsByClassName("close")[0];
+	closebtn.onclick = function(){
+		modal.style.display = "none";
+	}
+	document.getElementsByName
+</script>
+</html>
