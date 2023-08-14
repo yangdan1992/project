@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Q5</title>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<div class="q_num">
+		<div class="line"></div>
+		<div class="circle1">1</div>
+		<div class="circle2">2</div>
+		<div class="circle3">3</div>
+		<div class="circle4">4</div>
+		<div class="circle5 active">5</div>
+	</div>
+	<div class="container">
+		<div class="question">
+			<p style="background: #fff; font-weight: bold;">Q5：猫和狗我更喜欢？</p>
+			<input type="radio" name="Q5" value="1">&nbsp;&nbsp;猫<br>
+			<input type="radio" name="Q5" value="2">&nbsp;&nbsp;狗<br>
+			<input type="radio" name="Q5" value="3">&nbsp;&nbsp;都不喜欢<br>
+			<input type="radio" name="Q5" value="4">&nbsp;&nbsp;都喜欢<br>
+		</div>
+		<div class="next" onClick="checkAns()">提交</div>
+	</div>
+</body>
+<script>
+	var str = window.location.href;
+	var list =  str.split('?');
+	var q1 = decodeURI(list[1]);
+	var q2 = decodeURI(list[2]);
+	var q3 = decodeURI(list[3]);
+	var q4 = decodeURI(list[4]);
+	var temp = document.getElementsByName("Q5");  //返回带有指定名称的对象集合
+	
+	function checkAns(){
+		var answer = 0;
+		for(var i=0;i<temp.length;i++){
+			if(temp[i].checked) answer = temp[i].value;  //获取被选中的选项
+		}
+		if(answer==0) alert("请选择答案");
+		else window.location.href = "result.html?"+q1+"?"+q2+"?"+q3+"?"+q4+"?"+answer;
+	}
+</script>
+</html>

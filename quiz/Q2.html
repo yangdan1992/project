@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Q2</title>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<div class="q_num">
+		<div class="line"></div>
+		<div class="circle1">1</div>
+		<div class="circle2 active">2</div>
+		<div class="circle3">3</div>
+		<div class="circle4">4</div>
+		<div class="circle5">5</div>
+	</div>
+	<div class="container">
+		<div class="question">
+			<p style="background: #fff; font-weight: bold;">Q2：我喜欢吃什么味道的方便面？</p>
+			<input type="radio" name="Q2" value="1">&nbsp;&nbsp;红烧牛肉<br>
+			<input type="radio" name="Q2" value="2">&nbsp;&nbsp;老坛酸菜<br>
+			<input type="radio" name="Q2" value="3">&nbsp;&nbsp;香菇炖鸡<br>
+			<input type="radio" name="Q2" value="4">&nbsp;&nbsp;从来不吃<br>
+		</div>
+		<div class="next" onClick="checkAns()">下一题</div>
+	</div>
+</body>
+<script>
+	var str = window.location.href;
+	var list =  str.split('?');
+	var q1 = decodeURI(list[1]);
+	var temp = document.getElementsByName("Q2");  //返回带有指定名称的对象集合
+
+	function checkAns(){
+		var answer = 0;
+		for(var i=0;i<temp.length;i++){
+			if(temp[i].checked) answer = temp[i].value;  //获取被选中的选项
+		}
+		if(answer==0) alert("请选择答案");
+		else window.location.href = "Q3.html?"+q1+"?"+answer;
+	}
+</script>
+</html>

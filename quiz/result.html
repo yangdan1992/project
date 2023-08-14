@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试结果</title>
+<style>
+	body{
+		margin: 0;
+		padding: 0;
+		background:#F3ED61;
+	}
+	.container{
+		width: 30%;
+		margin: 50px auto;
+		min-width: 300px;
+		position: relative;
+	}
+	.container img{
+		width: 100%;
+	}
+	.title{
+		position: absolute;
+		font-family: "黑体-简";
+		font-size: 60px;
+		top: 45%;
+		width: 100%;
+		text-align: center;
+	}
+	.restart{
+		position: absolute;
+		width: 20%;
+		margin: auto;
+		bottom: -5%;
+		left: 40%;
+	}
+	.restart img{
+		width: 100%;
+		cursor: pointer;
+	}
+	.star{
+		width: 50%;
+		position: absolute;
+		top:75%;
+		left: 42%;
+	}
+	.star img{
+		width: 15%;
+		animation: img 1s;
+	}
+	@keyframes img{
+		0%{
+			transform: scale(0,0);
+		}
+		50%{
+			transform: scale(1.2,1.2);
+		}
+		100%{
+			transform: scale(1,1);
+		}
+	}
+</style>
+</head>
+
+<body>
+	<div class="container">
+		<img src="images/背景.png">
+		<div class="title">最佳拍档</div>
+		<div class="star">
+			<img src="images/star2.png">
+			<img style="animation-delay: .2s;" src="images/star2.png">
+			<img style="animation-delay: .4s;" src="images/star2.png">
+			<img style="animation-delay: .6s;" src="images/star2.png">
+			<img style="animation-delay: .8s;" src="images/star2.png">
+		</div>
+		<div class="restart">
+			<img src="images/重新开始.png" onClick="window.location.href='index.html';">
+		</div>
+	</div>
+</body>
+<script>
+	// JavaScript Document
+	var questionArray = new Array("Q1","Q2","Q3","Q4","Q5");
+	var rightArray = new Array();  //将答题结果转换为1,0表示
+	var aryAns = new Array(2,2,1,2,4);   //建立储存正确答案的数组
+	var img = document.getElementsByTagName("img");
+
+	var str = window.location.href;
+	var resultArray =  str.split('?');//存放答题结果
+
+	//判断题目是否答对
+	var right_number= 0;//计算答对的题数；
+	for (var i = 0; i < 5; i++) {
+		if (aryAns[i]==resultArray[i+1]) {
+			right_number++;
+			rightArray[i] = 1;
+		}else{
+			rightArray[i] = 0;
+		}
+	}
+
+	var title = document.getElementsByClassName("title")[0];
+	switch(right_number){
+		case 0:
+			title.innerHTML = "啥也不是";
+			break;
+		case 1:
+			title.innerHTML = "再见吧朋友";
+			img[1].src = "images/star1.png";
+			break;
+		case 2:
+			title.innerHTML = "路人甲";
+			for(var i=1;i<=2;i++) img[i].src = "images/star1.png";
+			break;
+		case 3:
+			title.innerHTML = "soso";
+			for(var i=1;i<=3;i++) img[i].src = "images/star1.png";
+			break;
+		case 4:
+			title.innerHTML = "真朋友";
+			for(var i=1;i<=4;i++) img[i].src = "images/star1.png";
+			break;
+		case 5:
+			title.innerHTML = "最佳拍档";
+			for(var i=1;i<=5;i++) img[i].src = "images/star1.png";
+			break;
+	}
+</script>
+</html>
