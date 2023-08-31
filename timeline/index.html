@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>jQuery计时器插件TimeCircles多种效果</title>
+<link rel="stylesheet" href="css/TimeCircles.css" />
+</head>
+<body>
+<h1 style="margin: 40px; font: 32px Microsoft Yahei; text-align: center;">jQuery计时器插件TimeCircles演示1</h1>
+
+<p style="width: 580px; margin: 0 auto; text-align: center;">离2018年1月1日还有</p>
+<div id="someTimer1" class="someTimer" data-date="2018-01-01 00:00:00" style="width: 700px; margin: 0 auto;"></div>
+
+<p style="width: 580px; margin: 0 auto; text-align: center;">倒计时10秒后结束</p>
+<div id="someTimer2" class="someTimer" data-timer="10" style="width: 700px; margin: 0 auto;"></div>
+
+<p style="width: 580px; margin: 0 auto; text-align: center;">页面开始时计时</p>
+<div id="someTimer3" class="someTimer" style="width: 700px; margin: 0 auto;"></div>
+
+<script src="http://www.lanrenzhijia.com/ajaxjs/jquery.min.js"></script>
+<script src="js/TimeCircles.js"></script>
+<script>
+$(function(){
+	$('#someTimer1').TimeCircles({
+		time : {
+			Days: {
+				show: false,
+				text: "天",
+				color: "#FC6"
+			},
+			Hours: {
+				show: false,
+				text: "时",
+				color: "#9CF"
+			},
+			Minutes: {
+				show: false,
+				text: "分",
+				color: "#BFB"
+			},
+			Seconds: {
+				show: false,
+				text: "秒",
+				color: "#F99"
+			}
+		}
+	});
+	$('#someTimer2').TimeCircles({
+		time : {
+			Days: {
+				show: false,
+				text: "天",
+				color: "#FC6"
+			},
+			Hours: {
+				show: false,
+				text: "时",
+				color: "#9CF"
+			},
+			Minutes: {
+				show: false,
+				text: "分",
+				color: "#BFB"
+			},
+			Seconds: {
+				show: false,
+				text: "秒",
+				color: "#F99"
+			}
+		},
+		refresh_interval: 0.1,
+		count_past_zero: false,
+		circle_bg_color: "#ddd",
+		fg_width: 0.03,
+		bg_width: 0.2
+	});
+	$('#someTimer3').TimeCircles({
+		time : {
+			Days: {
+				show: false,
+				text: "天",
+				color: "#FC6"
+			},
+			Hours: {
+				show: false,
+				text: "时",
+				color: "#9CF"
+			},
+			Minutes: {
+				show: false,
+				text: "分",
+				color: "#BFB"
+			},
+			Seconds: {
+				show: false,
+				text: "秒",
+				color: "#F99"
+			}
+		},
+		refresh_interval: 0.1,
+		count_past_zero: true,
+		circle_bg_color: "#eee",
+		fg_width: 0.05,
+		bg_width: 1
+	});
+});
+</script>
+
+</body>
+</html>
