@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+#box {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    border: 1px solid #ADADAD;
+    border-radius: 15px;
+    box-shadow: 1px 1px 1px #ADADAD;
+    text-align: center;
+    position: relative;
+}
+#box h3 {
+    padding: 10px 0;
+}
+#box .img {
+    width: 280px;
+    height: 200px;
+    margin: 0 auto;
+    position: relative;
+}
+#box .img img {
+    width: 100%;
+    height: 100%;
+}
+#box .img .kuai {
+    width: 50px;
+    height: 50px;
+    background-image: url(../img/01.jpg);
+    background-repeat: no-repeat;
+    background-size: 280px 200px;
+    left: 0;
+    position: absolute;
+    opacity: 0;
+    z-index: 10;
+}
+#box .img .kuai2 {
+    top: 10px;
+    left: 100px;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+}
+#box .slider {
+    width: 280px;
+    height: 30px;
+    margin: 10px auto;
+    background-color: #DDDDDD;
+    border-radius: 10px;
+    position: relative;
+}
+#box .slider .ming {
+    width: 0px;
+    height: 30px;
+    margin: 10px auto;
+    background-color: skyblue;
+    top: -10px;
+    left: 0;
+    border-radius: 10px;
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    line-height: 30px;
+}
+#box .slider button {
+    z-index: 20;
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    left: 0;
+    top: -8px;
+    background: white url(../img/yz.png) no-repeat;
+    background-size: 100%;
+    border-radius: 50%;
+    border: 0;
+}
+.minbtn {
+    width: 300px;
+    height: 50px;
+    margin: 30px auto;
+    text-align: center;
+    overflow: hidden;
+    line-height: 50px;
+}
+.minbtn button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: url(../img/sx.png) no-repeat;
+    background-size: 100%;
+    border: 0;
+    float: left;
+}
+.minbtn span {
+    line-height: 30px;
+    float: left;
+    height: 100%;
+    text-indent: 1em;
+    color: blueviolet;
+    font-weight: bold;
+}
