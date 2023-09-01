@@ -1,37 +1,127 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>log-in</title>
-    <link href="css/login_reg.css" rel="stylesheet" type="text/css">
-    <script src="js/login_reg.js"></script>
+<meta charset="utf-8">
+<title>登录</title>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+		background: #f4f4f4;
+	}
+	.line{
+		height: 5px;
+		background: #fde577;
+	}
+	h1{
+		color: #525252;
+	}
+	form{
+		background: #fff;
+		border: solid 1px #989898;
+		width: 350px;
+		margin: 30px auto;
+		padding: 30px 0;
+	}
+	input{
+		width: 80%;
+		height: 35px;
+		border-radius: 10px;
+		border: solid 1px #989898;
+		outline: none;
+		background: #fff;
+		margin: 10px 0;
+		font-size: 16px;
+		padding-left: 10px;
+	}
+	.btn{
+		background: #fde577;
+		color: #fff;
+		width: 83%;
+		cursor: pointer;
+	}
+	.btn:hover{
+		background:#F1E53A;
+	}
+	.content{
+		text-align: center;
+		margin-top: 50px;
+	}
+	#remind_u, #remind_p{
+		color: #E81A1E;
+		background: #fff;
+		text-align: left;
+		font-size: 10px;
+		margin-left: 30px;
+	}
+	a{
+		text-decoration: none;
+		color: #2CE3EC;
+	}
+</style>
 </head>
+
 <body>
-	<div class="header-line"></div>
-    <div class="content">
-        <img class="content-logo" src="images/form_logo.png" alt="logo">
-        <h1 class="content-title">登录</h1>
-        <div class="content-form">
-            <form method="post" onsubmit="return submitTest(username.value, pwd.value)">
-                <div id="change_margin_u">
-                    <input id="username" class="user" type="text" name="user" placeholder="请输入用户名" onblur="oBlur_u(username.value)" onfocus="oFocus_u()">
-                </div>
-                <!-- input的value为空时弹出提醒 -->
-                <p id="remind_u"></p>
-                <div id="change_margin_p">
-                    <input id="pwd" class="password" type="password" name="password" placeholder="请输入密码" onblur="oBlur_p(pwd.value)" onfocus="oFocus_p()">
-                </div>
-                <!-- input的value为空时弹出提醒 -->
-                <p id="remind_p"></p>
-                <div id="change_margin_s">
-                    <input class="content-form-signup" type="submit" value="登录">
-                </div>
-            </form>
-        </div>
-        
-        <div class="content-login-description">没有账户？</div>
-        <div><a class="content-login-link" href="sign_up.html">注册</a></div>
-        
+	<div class="line"></div>
+	<div class="content">
+		<img src="images/form_logo.png" width="100px">
+		<h1>登录</h1>
+		<form onSubmit="return submitTest()" action="success.html">
+			<input type="text" placeholder="请输入用户名" id="username" onBlur="verify_username()" onFocus="input_username()">
+			<p id="remind_u"></p>
+			<input type="password" placeholder="请输入密码" id="password" onBlur="verify_pwd()" onFocus="input_pwd()">
+			<p id="remind_p"></p>
+			<input type="submit" value="登录" class="btn">
+		</form>
+		<p>没有账户？</p>
+		<a href="sign_up.html">注册</a>
 	</div>
 </body>
+<script>
+	var username = document.getElementById("username");//定位用户名文本框
+	var password = document.getElementById("password");//定位密码文本框
+	var remind_u = document.getElementById("remind_u");//定位请输入用户名提示段落
+	var remind_p = document.getElementById("remind_p");//定位请输入用户名提示段落
+	
+	function verify_username(){
+		if(username.value==""){
+			remind_u.innerHTML = "请输入用户名！";
+		}else{
+			remind_u.innerHTML = "";
+		}
+	}
+	
+	function verify_pwd(){
+		if(password.value==""){
+			remind_p.innerHTML = "请输入密码！";
+		}else{
+			remind_p.innerHTML = "";
+		}
+	}
+	
+	function input_username(){
+		remind_u.innerHTML = "";
+	}
+	
+	function input_pwd(){
+		remind_p.innerHTML = "";
+	}
+	
+	function submitTest(){
+		if(username.value==""){
+			remind_u.innerHTML = "请输入用户名！";
+			return false;
+		}
+		if(password.value==""){
+			remind_p.innerHTML = "请输入密码！";
+			return false;
+		}
+		if(username.value=="yangdan" && password.value=="123456"){
+			return true;
+		}else{
+			alert("用户名或密码错误！");
+			return false;
+		}
+	}
+</script>
 </html>
