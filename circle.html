@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+	<title>Circle Transformation</title>
+    <style>
+		body{
+			width: 100%;
+			height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+		}
+        .circle {
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            border-radius: 50%;
+            transition: all 0.5s ease;/*过渡动画效果*/
+            position: absolute;
+        }
+
+       .small-circle {
+            background-color: blue;
+            border-radius: 50%;
+            position: absolute;
+            opacity: 0;/*小圆初始透明度为0，即完全透明状态*/
+            transform: scale(0);/*scale对应大小，取值0-1,对应0%-100%*/
+		   	background: blue;
+            transition: all 0.5s ease;
+        }
+		.bottom{
+			margin-top: 400px;
+		}
+    </style>
+</head>
+
+<body>
+    <div id="circle" class="circle"></div>
+	<div class="bottom">
+		上面的圆形中隐藏着什么？<br>
+		<input id="ans">
+		<button onClick="verify()">提交</button>
+	</div>
+</body>
+<script>
+	var arr = [14,19,25,27,49,51,57,46,58];
+	function splitCircle(circle) {//圆形分裂
+		var start_id = (circle.index-1)*4+1;//分裂出的左上角小圆编号
+		//定义延迟时间，避免在动画过渡时间中鼠标移入导致分裂位置出现偏差
+		setTimeout(() => {
+			const rect = circle.getBoundingClientRect();//获取大圆所在的正方形区域
+			const circleSize = parseFloat(getComputedStyle(circle).width);//获取大圆的直径
+			const smallSize = circleSize / 2;//分裂小圆的直径
+			document.body.removeChild(circle);//移除大圆
+			//生成小圆2*2
+			for (let i = 0; i < 2; i++) {
+				for (let j = 0; j < 2; j++) {
+					const newCircle = document.createElement('div');//创建div
+					newCircle.index = start_id ++;//记录编号
+					newCircle.className = "small-circle";//设置小圆样式
+					newCircle.style.width = smallSize + "px";//设置小圆宽度
+					newCircle.style.height = smallSize + "px";//设置小圆高度
+					newCircle.style.left = rect.left + j * smallSize + 'px';//设置小圆位置：距离左侧距离 
+					newCircle.style.top = rect.top + i * smallSize + 'px';//设置小圆位置：距离顶部距离
+					//过渡动画
+					setTimeout(() => {
+						newCircle.style.opacity = 1;
+						newCircle.style.transform = 'scale(1)';
+						if(smallSize <= 200 / 8 && arr.indexOf(newCircle.index) != -1){
+							newCircle.style.background = "black";
+						}
+					})
+					document.body.appendChild(newCircle);
+					if(smallSize > 200 / 8){//控制分裂最小单位
+						//为小圆绑定鼠标移入事件
+						newCircle.addEventListener('mouseenter', () => splitCircle(newCircle))
+					}else{
+						//测试用，点击对应小圆可在控制台输出对应的编号
+						newCircle.onclick = function(){
+							console.log(this.index)
+						}
+					}
+					
+				}
+			}
+		},200);//延迟时间，单位毫秒
+	}
+	
+	const mainCircle = document.getElementById('circle');
+	mainCircle.index = 1;
+	mainCircle.addEventListener('mouseenter', () => splitCircle(mainCircle))
+	
+	var time = 0;
+	var t = setInterval(function(){
+		time ++;
+	},1000);
+	
+	var ans = document.getElementById("ans");
+	function verify(){
+		if(ans.value == 1){
+			alert("right!用时" + time + "秒");
+			clearInterval(t);
+		}
+		else alert("wrong!")
+	}
+</script>
+</html>
+    

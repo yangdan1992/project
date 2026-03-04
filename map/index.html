@@ -41,12 +41,12 @@
     var provincesText = ['上海', '河北', '山西', '内蒙古', '辽宁', '吉林', '黑龙江', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', '广东', '广西', '海南', '四川', '贵州', '云南', '西藏', '陕西', '甘肃', '青海', '宁夏', '新疆', '北京', '天津', '重庆', '香港', '澳门'];
 
     var seriesData = [{
-      name: '北京',
-      value: 100
-    }, {
-      name: '天津',
-      value: 0
-    }, {
+			name: '北京',
+			value: 100//可以自定义
+		}, {
+			name: '天津',
+			value: 0
+		}, {
       name: '上海',
       value: 60
     }, {
@@ -144,9 +144,9 @@
       value: 0
     }];
 
-    oBack.onclick = function () {
-      initEcharts("china", "中国");
-    };
+//    oBack.onclick = function () {
+//      initEcharts("china", "中国");
+//    };
 
     initEcharts("china", "中国");
 
@@ -205,8 +205,8 @@
 
       myChart.setOption(option);
 
-      myChart.off("click");
-
+//      myChart.off("click");
+//
       if (pName === "china") { // 全国时，添加click 进入省级
         myChart.on('click', function (param) {
           console.log(param.name);
@@ -218,12 +218,12 @@
               break;
             }
           }
-            if (param.componentType === 'series') {
-                var provinceName =param.name;
-                $('#box').css('display','block');
-                $("#box-title").html(provinceName);
-
-            }
+//            if (param.componentType === 'series') {
+//                var provinceName =param.name;
+//                $('#box').css('display','block');
+//                $("#box-title").html(provinceName);
+//
+//            }
         });
       } else { // 省份，添加双击 回退到全国
         myChart.on("dblclick", function () {
